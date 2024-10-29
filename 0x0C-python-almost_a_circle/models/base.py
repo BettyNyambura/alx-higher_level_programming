@@ -1,10 +1,13 @@
 #!/usr/bin/python3
 
-"""The class Base module"""
+""" Defines The class Base module"""
+
 
 class Base:
-    """
-    Parent class for all the classes in this project
+
+    """Represents the base model.
+
+    This class manages 'id' attribute in all future classes.
     """
 
     __nb_objects = 0
