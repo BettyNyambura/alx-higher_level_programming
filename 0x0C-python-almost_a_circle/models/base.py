@@ -3,6 +3,10 @@
 """ Defines The class Base module"""
 
 
+import json
+import csv
+
+
 class Base:
 
     """Represents the base model.
