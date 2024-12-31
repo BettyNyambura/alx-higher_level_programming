@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This script lists all states with a name starting with N from the db hbtn_0e_0_usa.
+Lists all states with a name starting with N from the db hbtn_0e_0_usa.
 The results are sorted in ascending order using state.id.
 """
 
@@ -26,7 +26,11 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     # Execute the query
-    cursor.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id ASC")
+    cursor.execute(
+            "SELECT * FROM states"
+            "WHERE name LIKE BINARY 'N%' "
+            "ORDER BY id ASC"
+    )
 
     # Fetch all the rows
     states = cursor.fetchall()
