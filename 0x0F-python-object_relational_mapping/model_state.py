@@ -1,5 +1,18 @@
 #!/usr/bin/python3
-"""Module to define the State class and connect to the MySQL database"""
+"""
+Module to define the State class and connect to the MySQL database
+
+This script connects to a MySQL database using SQLAlchemy and lists all
+State objects (rows) from the `states` table, ordered by `id`. The script
+requires the following command-line arguments:
+1. MySQL username
+2. MySQL password
+3. Database name
+
+The results are printed in ascending order by the `id` field of the `states`
+table. This script uses the SQLAlchemy library for interacting with the
+MySQL database.
+"""
 
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
