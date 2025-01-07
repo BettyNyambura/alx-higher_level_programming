@@ -11,7 +11,8 @@ import sys
 if __name__ == "__main__":
     # Retrieve command line arguments
     if len(sys.argv) != 4:
-        print("Usage:i ./script.py <mysql username> <mysql password> <db name>")
+        print("Usage: ./script.py <mysql username> "
+                "<mysql password> <db name>")
         sys.exit(1)
 
     username = sys.argv[1]
