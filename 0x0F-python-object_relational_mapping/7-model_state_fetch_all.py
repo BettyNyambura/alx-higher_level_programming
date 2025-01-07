@@ -19,17 +19,17 @@ if __name__ == "__main__":
             sys.argv[1], sys.argv[2], sys.argv[3]
         ), pool_pre_ping=True
     )
-    
+
     # Bind engine and create session
     Session = sessionmaker(bind=engine)
     session = Session()
-    
+
     # Query all State objects and sort by id
     states = session.query(State).order_by(State.id).all()
-    
+
     # Display results
     for state in states:
         print(f"{state.id}: {state.name}")
-    
+
     # Close the session
     session.close()
