@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """
-This script lists all cities of a given state from the database `hbtn_0e_4_usa`.
+This script lists all cities of a given state from thr db.
 
-It takes 4 arguments: MySQL username, MySQL password, database name, and state name.
-Results are sorted in ascending order by `cities.id` and displayed as a comma-separated list.
+It takes 4 arguments:
+Results are sorted in ascending order by `cities.id`
 
-The script uses MySQLdb to connect to a MySQL server running on localhost at port 3306.
+The script uses MySQLdb to connect to a MySQL server.
 """
 
 import MySQLdb
