@@ -7,8 +7,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from model_state import Base
 
 
-class
-City(Base):
+class City(Base):
     """
     City class linked to the cities table.
     """
