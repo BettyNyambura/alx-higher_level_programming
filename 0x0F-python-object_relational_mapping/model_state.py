@@ -1,21 +1,38 @@
 #!/usr/bin/python3
-"""Module that defines the State class for the 'states' table in the db"""
+"""Module to define the State class and connect to the MySQL database"""
 
-from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import relationship
+from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
-from model_city import City
+from sqlalchemy.orm import sessionmaker
 
+# Define Base
 Base = declarative_base()
 
-
+# Define State class
 class State(Base):
-    """Class representing the states table"""
+    """State class that represents the 'states' table in the database"""
     __tablename__ = 'states'
 
-    # Primary key: unique, auto-incremented, non-nullable
-    id = Column(Integer, primary_key=True, nullable=False,
-                autoincrement=True, unique=True)
+    # id column: auto-incremented, unique, primary key, non-nullable
+    id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
 
-     # Name of the state: non-nullable string with max length of 128 chars
+    # name column: non-nullable string with a max length of 128 characters
     name = Column(String(128), nullable=False)
+
+# Connect to the MySQL server running on localhost at port 3306
+engine = create_engine('mysql+mysqldb://<username>:<password>@localhost:3306/<dbname>')
+
+# Create all tables (State class must be imported before this call)
+Base.metadata.create_all(engine)
+
+# Session setup (optional if you want to interact with the database)
+Session = sessionmaker(bind=engine)
+session = Session()
+
+# Example: Add a state (uncomment to test)
+# new_state = State(name="California")
+# session.add(new_state)
+# session.commit()
+
+# Close the session
+session.close()
