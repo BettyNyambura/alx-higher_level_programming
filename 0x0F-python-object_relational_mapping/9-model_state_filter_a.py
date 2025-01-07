@@ -27,8 +27,7 @@ if __name__ == "__main__":
 
     # Query all State objects containing 'a'
     states = session.query(State).filter(State.name.like('%a%'))\
-            .order_by(State.id).all(
-    )
+    .order_by(State.id).all()
 
     # Display the results
     for state in states:
