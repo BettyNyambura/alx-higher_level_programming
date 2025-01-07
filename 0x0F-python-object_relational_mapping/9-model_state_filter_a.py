@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-Lists all State objects containing the letter 'a' from the database hbtn_0e_6_usa.
+Lists all State objects containing the letter 'a' from the
+database hbtn_0e_6_usa.
 
 The script:
 - Connects to a MySQL database using SQLAlchemy.
@@ -23,10 +24,11 @@ if __name__ == "__main__":
     # Bind engine and create session
     Session = sessionmaker(bind=engine)
     session = Session()
-    
+
     # Query all State objects containing 'a'
     states = session.query(State).filter(State.name.like('%a%'))\
-                  .order_by(State.id).all()
+            .order_by(State.id).all(
+    )
 
     # Display the results
     for state in states:
