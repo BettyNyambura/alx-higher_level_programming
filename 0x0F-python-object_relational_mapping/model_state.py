@@ -1,51 +1,22 @@
 #!/usr/bin/python3
 """
-Module to define the State class and connect to the MySQL database
+Defines a State class and an instance Base = declarative_base().
 
-This script connects to a MySQL database using SQLAlchemy and lists all
-State objects (rows) from the `states` table, ordered by `id`. The script
-requires the following command-line arguments:
-1. MySQL username
-2. MySQL password
-3. Database name
-
-The results are printed in ascending order by the `id` field of the `states`
-table. This script uses the SQLAlchemy library for interacting with the
-MySQL database.
+State class:
+- Inherits from Base.
+- Links to the MySQL table `states`.
+- Has id and name attributes:
+  * id: auto-generated, unique integer, primary key, not null.
+  * name: string with max 128 characters, not null.
 """
-
-from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
 
-# Define Base
 Base = declarative_base()
 
-# Define State class
 class State(Base):
-    """State class that represents the 'states' table in the database"""
+    """Represents a state for a MySQL database."""
     __tablename__ = 'states'
-
-    # id column: auto-incremented, unique, primary key, non-nullable
-    id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
-
-    # name column: non-nullable string with a max length of 128 characters
+    id = Column(Integer, primary_key=True, nullable=False,
+                autoincrement=True, unique=True)
     name = Column(String(128), nullable=False)
-
-# Connect to the MySQL server running on localhost at port 3306
-engine = create_engine('mysql+mysqldb://<username>:<password>@localhost:3306/<dbname>')
-
-# Create all tables (State class must be imported before this call)
-Base.metadata.create_all(engine)
-
-# Session setup (optional if you want to interact with the database)
-Session = sessionmaker(bind=engine)
-session = Session()
-
-# Example: Add a state (uncomment to test)
-# new_state = State(name="California")
-# session.add(new_state)
-# session.commit()
-
-# Close the session
-session.close()
